@@ -1,31 +1,39 @@
 import smtplib as s
 
-# Connect to Gmail SMTP server
+# Connect to Gmail SMTP Server
 ob = s.SMTP("smtp.gmail.com", 587)
 ob.ehlo()
 ob.starttls()
 
-# Login using your Gmail and App Password
-ob.login("saumyadasqwerty@gmail.com", "uprd qkmq hojx ygks")
+# Login
+ob.login("saumyadasqwerty@gmail.com", "wmqq wqub ngpm buyk")
 
-# Take input from the user
+# Inputs
 subject = input("Enter Subject: ")
-body = input("Enter Message: ")
 
-# Create email
+print("Enter your message (type 'END' on a new line when done):")
+lines = []
+while True:
+    line = input()
+    if line.strip() == "END":
+        break
+    lines.append(line)
+
+body = "\n".join(lines)
+
+# Create Email
 message = f"Subject: {subject}\n\n{body}"
 
-# List of recipients
+# Recipients
 listadd = [
     "prajapatgaurav08@gmail.com",
     "dassaumya13@gmail.com",
     "ssaumyaddas21@gmail.com"
 ]
 
-# Send email
+# Send Email (only once to all recipients)
 ob.sendmail("saumyadasqwerty@gmail.com", listadd, message)
 
 print("Email Sent Successfully!")
 
-# Close connection
 ob.quit()
